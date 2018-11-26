@@ -18,7 +18,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="jar:file:/C:/Program%20Files/Android/Android%20Studio/plugins/android/lib/android.jar!/images/material_design_icons/hardware/ic_keyboard_backspace_black_24dp.xml" />
+                                      <entry key="url" value="jar:file:/C:/Program%20Files/Android/Android%20Studio/plugins/android/lib/android.jar!/images/material_design_icons/maps/ic_restaurant_menu_black_24dp.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -28,13 +28,10 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="assetSourceType" value="FILE" />
-                            <entry key="color" value="fffafa" />
-                            <entry key="height" value="908" />
-                            <entry key="outputName" value="ic_logopn" />
+                            <entry key="color" value="ff2e1d" />
+                            <entry key="outputName" value="ic_motivo" />
                             <entry key="overrideSize" value="true" />
                             <entry key="sourceFile" value="C:\Users\jelln\Desktop\logopn.svg" />
-                            <entry key="width" value="852" />
                           </map>
                         </option>
                       </PersistentState>

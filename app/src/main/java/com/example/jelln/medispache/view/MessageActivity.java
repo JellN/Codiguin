@@ -235,7 +235,7 @@ public class MessageActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()){
                     Token token = snapshot.getValue(Token.class);
-                    Data data = new Data(user.getUid(),  R.drawable.ic_launcher_background, username+": "+message, "Nova mensagem",
+                    Data data = new Data(user.getUid(),  R.drawable.ic_motivo, username+": "+message, "Nova mensagem",
                             userid);
                     Sender sender = new Sender(data, token.getToken());
                     apiService.sendNotification(sender)
