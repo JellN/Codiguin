@@ -1,5 +1,5 @@
 # Codiguin
-Essa porra aqui ó
-Rodrigo é viado
+-Essa porra aqui ó
+-Rodrigo é viado
 
 
