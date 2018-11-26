@@ -68,7 +68,7 @@ public class Splash extends AppCompatActivity {
     }
 
 
-    private void logar(String email, String pass) {
+   /* private void logar(String email, String pass) {
         auth.signInWithEmailAndPassword(email, pass).addOnCompleteListener(Splash.this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
@@ -83,7 +83,7 @@ public class Splash extends AppCompatActivity {
         });
 
 
-    }
+    }*/
 
     private void alert(String msg) {
         Toast.makeText(getApplicationContext(),msg,Toast.LENGTH_SHORT).show();
