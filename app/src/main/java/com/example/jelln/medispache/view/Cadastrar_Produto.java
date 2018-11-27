@@ -55,7 +55,7 @@ EditText valor_cadastro, quantidade_cadastro, nome_cadastro;
         p.setValor(valor);
         p.setQuantidade(quantidade);
         p.setId(id);
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Empresas").child(user.getUid()).child(id);
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("ProdutosEmpresa").child(user.getUid()).child(id);
         reference.setValue(p);
         Toast.makeText(getApplicationContext(), "Adicionado com sucesso", Toast.LENGTH_SHORT).show();
         Intent i = new Intent(getApplicationContext(), MainActivity.class);

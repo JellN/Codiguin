@@ -80,9 +80,6 @@ public class login extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
 
                 if(task.isSuccessful()){
-                    Usuarios u = new Usuarios();
-                    u.setEmail(email);
-                    u.setSenha(pass);
                     alert("Conectando ao Servidor, aguarde");
                     Intent i = new  Intent(getApplicationContext(), MainActivity.class);
                     i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);

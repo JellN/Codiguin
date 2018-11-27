@@ -69,7 +69,7 @@ public class Atualizar_Produto extends AppCompatActivity {
 
     private void adicionarprodutos(String nome, String valor, String quantidade, String id) {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Empresas").child(user.getUid()).child(id);
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("ProdutosEmpresa").child(user.getUid()).child(id);
         HashMap<String, Object> hashMap = new HashMap<>();
         hashMap.put("nome", nome);
         hashMap.put("quantidade", quantidade);

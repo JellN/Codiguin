@@ -77,7 +77,7 @@ public class ProdutosAdapter extends RecyclerView.Adapter<ProdutosAdapter.ViewHo
             @Override
             public void onClick(View v) {
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Empresas").child(user.getUid()).child(produtos.getId());
+                DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("ProdutosEmpresa").child(user.getUid()).child(produtos.getId());
                 databaseReference.removeValue();
                 alert("Container: "+produtos.getNome()+" removido.");
 

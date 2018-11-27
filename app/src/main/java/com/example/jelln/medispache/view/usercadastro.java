@@ -98,7 +98,7 @@ baac();
                     u.setStatus("offline");
                     u.setSenha(senha);
                     u.setId(auth.getUid());
-                    databaseReference.child("Agente").child(auth.getUid()).setValue(u);
+                    databaseReference.child("UserEmpresa").child(auth.getUid()).setValue(u);
 
 
                     alert("Cadastro efetuado com sucesso");

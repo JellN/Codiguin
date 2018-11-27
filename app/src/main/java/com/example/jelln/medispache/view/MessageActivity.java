@@ -108,7 +108,7 @@ public class MessageActivity extends AppCompatActivity {
 
 
 
-        reference = FirebaseDatabase.getInstance().getReference("Agente").child(userid);
+        reference = FirebaseDatabase.getInstance().getReference("User").child(userid);
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -209,7 +209,7 @@ public class MessageActivity extends AppCompatActivity {
 
 
         final String msg = message;
-        reference = FirebaseDatabase.getInstance().getReference("Agente").child(user.getUid());
+        reference = FirebaseDatabase.getInstance().getReference("UserEmpresa").child(user.getUid());
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -293,7 +293,7 @@ public class MessageActivity extends AppCompatActivity {
             }
         });
     }public void status(String status){
-        reference = FirebaseDatabase.getInstance().getReference("Agente").child(user.getUid());
+        reference = FirebaseDatabase.getInstance().getReference("UserEmpresa").child(user.getUid());
         HashMap<String, Object> hashMap = new HashMap<>();
         hashMap.put("status", status);
         reference.updateChildren(hashMap);

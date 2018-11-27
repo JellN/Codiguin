@@ -83,7 +83,7 @@ public class UsersFragment extends Fragment {
 
     private void searchUsers(String s) {
         final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        Query query = FirebaseDatabase.getInstance().getReference("Agente").orderByChild("search")
+        Query query = FirebaseDatabase.getInstance().getReference("User").orderByChild("search")
                 .startAt(s)
                 .endAt(s+"\uf8ff");
                 query.addValueEventListener(new ValueEventListener() {
@@ -116,7 +116,7 @@ public class UsersFragment extends Fragment {
     private void readUsers() {
         FirebaseAuth firebaseAuth = Conexao.getFirebaseAuth();
         final FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Agente");
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("User");
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {

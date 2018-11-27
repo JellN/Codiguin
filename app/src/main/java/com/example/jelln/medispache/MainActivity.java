@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.jelln.medispache.control.Conexao;
+import com.example.jelln.medispache.fragments.ChatsFragment;
 import com.example.jelln.medispache.fragments.PedidosFragment;
 import com.example.jelln.medispache.fragments.Produto_fragment;
 import com.example.jelln.medispache.fragments.ProfileFragment;
@@ -61,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
         username = findViewById(R.id.nomeuser);
         auth = Conexao.getFirebaseAuth();
         user = auth.getCurrentUser();
-        reference = FirebaseDatabase.getInstance().getReference("Agente").child(user.getUid());
+        reference = FirebaseDatabase.getInstance().getReference("UserEmpresa").child(user.getUid());
    //     eventoclick();
         reference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -94,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
         final TabLayout tabLayout = findViewById(R.id.tab_layout);
         ViewPager viewPager = findViewById(R.id.view_pager);
         ViewPageAdapter viewPageAdapter = new ViewPageAdapter(getSupportFragmentManager());
-        viewPageAdapter.addFragment(new UsersFragment(), "Clientes");
+        viewPageAdapter.addFragment(new ChatsFragment(), "Clientes");
         viewPageAdapter.addFragment(new Produto_fragment(), "Produtos");
         viewPageAdapter.addFragment(new PedidosFragment(), "Pedidos");
 
@@ -225,7 +226,7 @@ profilie_image.setOnClickListener(new View.OnClickListener() {
     }
     public void status(String status){
         if(u!=null){
-        reference = FirebaseDatabase.getInstance().getReference("Agente").child(user.getUid());
+        reference = FirebaseDatabase.getInstance().getReference("UserEmpresa").child(user.getUid());
         HashMap<String, Object> hashMap = new HashMap<>();
         hashMap.put("status", status);
         reference.updateChildren(hashMap);
