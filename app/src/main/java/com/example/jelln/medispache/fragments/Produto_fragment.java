@@ -70,8 +70,8 @@ public class Produto_fragment extends Fragment {
     private void readUsers() {
         FirebaseAuth firebaseAuth = Conexao.getFirebaseAuth();
         final FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("ProdutosEmpresa").child(firebaseUser.getUid());
-        reference.addValueEventListener(new ValueEventListener() {
+        Query query = FirebaseDatabase.getInstance().getReference("ProdutosEmpresa").child(firebaseUser.getUid()).orderByChild("nome");
+        query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                     mProdutos.clear();
