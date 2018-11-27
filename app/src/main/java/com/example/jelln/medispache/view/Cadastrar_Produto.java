@@ -3,6 +3,8 @@ package com.example.jelln.medispache.view;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -18,12 +20,17 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.UUID;
 
 public class Cadastrar_Produto extends AppCompatActivity {
 ImageButton botao_cadastro;
 
 EditText valor_cadastro, quantidade_cadastro, nome_cadastro;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +38,7 @@ EditText valor_cadastro, quantidade_cadastro, nome_cadastro;
         inicializarcomponentes();
         eventobotao();
     }
+
 
     private void eventobotao() {
         botao_cadastro.setOnClickListener(new View.OnClickListener() {
@@ -69,14 +77,64 @@ EditText valor_cadastro, quantidade_cadastro, nome_cadastro;
         quantidade_cadastro = findViewById(R.id.quantidade_cadastro);
         nome_cadastro = findViewById(R.id.nome_cadastro);
         SimpleMaskFormatter smf = new SimpleMaskFormatter("NNN");
-        SimpleMaskFormatter smf2 = new SimpleMaskFormatter("NN.NN");
         MaskTextWatcher maskTextWatcher = new MaskTextWatcher(quantidade_cadastro, smf);
-        MaskTextWatcher maskTextWatcher2 = new MaskTextWatcher(valor_cadastro, smf2);
         quantidade_cadastro.addTextChangedListener(maskTextWatcher);
-        valor_cadastro.addTextChangedListener(maskTextWatcher2);
+        valor_cadastro.addTextChangedListener(new MascaraMonetaria(valor_cadastro));
+        valor_cadastro.setText("0.00");
 
 
 
 
     }
+    private class MascaraMonetaria implements TextWatcher{
+
+        final EditText campo;
+
+        public MascaraMonetaria(EditText campo) {
+            super();
+            this.campo = campo;
+        }
+
+        private boolean isUpdating = false;
+        DecimalFormat nf = new DecimalFormat("#,##0.00");
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before,
+                                  int after) {
+
+            if (isUpdating) {
+                isUpdating = false;
+                return;
+            }
+
+            isUpdating = true;
+            String str = s.toString();
+            boolean hasMask = ((str.indexOf(".") > -1 || str.indexOf(",") > -1));
+            // Verificamos se existe máscara
+            if (hasMask) {
+                str = str.replaceAll("[^\\d]", "");
+
+
+            }
+
+            try {
+
+                str = nf.format(Double.parseDouble(str) / 100);
+                campo.setText(str);
+                campo.setSelection(campo.getText().length());
+            } catch (NumberFormatException e) {
+                s = "";
+            }
+        }
+
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count,
+                                      int after) {
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+        }
+    }
 }
+
+
