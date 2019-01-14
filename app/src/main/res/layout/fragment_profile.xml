@@ -185,12 +185,11 @@
         android:textStyle="bold" />
 
     <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/salvar"
         android:layout_width="75dp"
         android:layout_height="75dp"
-        android:layout_alignParentBottom="true"
+        android:layout_above="@+id/attuser"
         android:layout_alignParentEnd="true"
-        android:layout_marginBottom="74dp"
-        android:layout_marginEnd="29dp"
-        android:src="@drawable/save"
-        android:id="@+id/salvar"/>
+        android:layout_marginEnd="25dp"
+        android:src="@drawable/save" />
 </RelativeLayout>
