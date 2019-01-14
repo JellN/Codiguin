@@ -6,8 +6,10 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.jelln.medispache.R;
@@ -27,7 +29,9 @@ public class usercadastro extends AppCompatActivity {
 
 
      EditText username, useradress, userpass, userCNPJ;
-     Button userbotao, voltar;
+    Spinner cidade;
+
+    Button userbotao, voltar;
      private FirebaseAuth auth;
   private FirebaseDatabase firebaseDatabase;
   private DatabaseReference databaseReference;
@@ -67,9 +71,11 @@ baac();
                 final String email = useradress.getText().toString().trim();
                 final   String senha = userpass.getText().toString().trim();
                 final String CNPJ = userCNPJ.getText().toString().trim();
+                final String cidades = cidade.getSelectedItem().toString();
 
-                if(!name.equals("")&&!email.equals("")&&!senha.equals("")&&!CNPJ.equals("")){
-                    criarUser(email, senha, name, CNPJ);
+
+                if(!name.equals("")&&!email.equals("")&&!senha.equals("")&&!CNPJ.equals("")&&!cidades.equals("Selecione uma Cidade")){
+                    criarUser(email, senha, name, CNPJ, cidades);
 
                 }else{
                     alert("preencha todos os dados");
@@ -90,7 +96,7 @@ baac();
         finish();
     }
 
-    private void criarUser(final String email, final String senha, final String name, final String CNPJ) {
+    private void criarUser(final String email, final String senha, final String name, final String CNPJ, final  String cidades) {
         auth.createUserWithEmailAndPassword(email, senha).addOnCompleteListener(usercadastro.this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
@@ -101,6 +107,7 @@ baac();
                     u.setStatus("offline");
                     u.setSenha(senha);
                     u.setCnpj(CNPJ);
+                    u.setCidade(cidades);
                     u.setId(auth.getUid());
                     databaseReference.child("UserEmpresa").child(auth.getUid()).setValue(u);
 
@@ -131,6 +138,9 @@ private void alert(String msg){
         SimpleMaskFormatter smf = new SimpleMaskFormatter("NN.NNN.NNN/NNNN-NN\n");
         MaskTextWatcher maskTextWatcher = new MaskTextWatcher(userCNPJ, smf);
         userCNPJ.addTextChangedListener(maskTextWatcher);
+        cidade = findViewById(R.id.cidade);
+        ArrayAdapter arrayAdapter = ArrayAdapter.createFromResource(this, R.array.cidades, android.R.layout.simple_spinner_item);
+        cidade.setAdapter(arrayAdapter);
     }
 
     @Override

@@ -55,7 +55,7 @@
                 android:layout_marginRight="-22dp"
                 android:src="@drawable/editare" />
 
-        <TextView
+        <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="username"
@@ -183,4 +183,14 @@
         android:textColor="@color/negra"
         android:textSize="18sp"
         android:textStyle="bold" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="74dp"
+        android:layout_marginEnd="29dp"
+        android:src="@drawable/save"
+        android:id="@+id/salvar"/>
 </RelativeLayout>

@@ -10,6 +10,15 @@ public class Usuarios {
     private String ImageUrl;
     private String cnpj;
     private String Status;
+    private String cidade;
+
+    public String getCidade() {
+        return cidade;
+    }
+
+    public void setCidade(String cidade) {
+        this.cidade = cidade;
+    }
 
     public String getCnpj() {
         return cnpj;

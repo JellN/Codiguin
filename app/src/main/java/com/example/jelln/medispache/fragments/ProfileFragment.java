@@ -44,33 +44,40 @@ import static android.app.Activity.RESULT_OK;
 
 public class ProfileFragment extends Fragment {
     CircleImageView image_profile;
-    TextView username;
+    EditText username;
     DatabaseReference referece;
     FirebaseUser user;
 
-    CircleImageView attnome;
+    CircleImageView attnome, salvar;
     ImageButton cancelar, atualizar;
     EditText nomemudar;
     StorageReference storageReference;
     private static final int IMAGE_REQUEST = 1;
     private Uri imageUrl;
     private StorageTask uploadTask;
-
+    boolean aberto;
+    String ultimo;
+    TextView cnpj, email, cidade;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        aberto=false;
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
         image_profile = view.findViewById(R.id.profile_image);
         username = view.findViewById(R.id.username);
         storageReference = FirebaseStorage.getInstance().getReference("uploads");
         attnome = view.findViewById(R.id.atualizarnome);
+        salvar = view.findViewById(R.id.salvar);
         cancelar = view.findViewById(R.id.botaocancela);
         atualizar = view.findViewById(R.id.botaoatt);
+        username.setEnabled(false);
         nomemudar = view.findViewById(R.id.mudarnome);
         nomemudar.setVisibility(View.GONE);
         cancelar.setVisibility(View.GONE);
         atualizar.setVisibility(View.GONE);
+        salvar.setVisibility(View.GONE);
+
 
         user = FirebaseAuth.getInstance().getCurrentUser();
         referece = FirebaseDatabase.getInstance().getReference("UserEmpresa").child(user.getUid());
@@ -108,19 +115,18 @@ public class ProfileFragment extends Fragment {
 
             }
         });
-        atualizar.setOnClickListener(new View.OnClickListener() {
+        salvar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String nomepego = nomemudar.getText().toString().trim();
+                String nomepego = username.getText().toString().trim();
                 DatabaseReference reference = FirebaseDatabase.getInstance().getReference("UserEmpresa").child(user.getUid());
                 HashMap<String, Object> hashMap = new HashMap<>();
                 hashMap.put("name", nomepego);
                 hashMap.put("search", nomepego.toLowerCase());
                 reference.updateChildren(hashMap);
-                nomemudar.setVisibility(View.GONE);
-                cancelar.setVisibility(View.GONE);
-                atualizar.setVisibility(View.GONE);
-                username.setText(nomepego);
+                salvar.setVisibility(View.GONE);
+                username.setEnabled(false);
+                aberto=false;
                 Toast.makeText(getContext(), "Nome de usuário alterado", Toast.LENGTH_SHORT).show();
             }
         });
@@ -134,10 +140,17 @@ public class ProfileFragment extends Fragment {
     }
 
     private void aparecer() {
-        nomemudar.setVisibility(View.VISIBLE);
-        cancelar.setVisibility(View.VISIBLE);
-        atualizar.setVisibility(View.VISIBLE);
+        if(aberto==false){
+            ultimo = username.getText().toString().trim();
+            salvar.setVisibility(View.VISIBLE);
+            username.setEnabled(true);
+        }else{
+            username.setText(ultimo);
+            salvar.setVisibility(View.GONE);
+            username.setEnabled(false);
+        }
 
+    aberto=!aberto;
     }
 
     private void openImage() {
