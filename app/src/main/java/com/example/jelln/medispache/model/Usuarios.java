@@ -8,8 +8,19 @@ public class Usuarios {
     private String senha;
     private String id;
     private String ImageUrl;
+    private String cnpj;
     private String Status;
+
+    public String getCnpj() {
+        return cnpj;
+    }
+
+    public void setCnpj(String cnpj) {
+        this.cnpj = cnpj;
+    }
+
     private String search;
+
 
     public String getSearch() {
         return search;

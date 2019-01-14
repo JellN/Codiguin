@@ -58,6 +58,22 @@
             android:textSize="24sp"
             android:textStyle="bold" />
 
+
+        <EditText
+            android:id="@+id/userCNPJ"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/userpass"
+            android:layout_centerHorizontal="true"
+            android:ems="10"
+            android:hint="CNPJ"
+            android:inputType="number"
+            android:textColorHint="@color/bk"
+            android:textColorLink="@color/white"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            />
+
         <EditText
             android:id="@+id/useradress"
             android:layout_width="wrap_content"
@@ -78,7 +94,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="127dp"
+            android:layout_marginTop="99dp"
             android:ems="10"
             android:hint="Nome"
             android:inputType="textPersonName"

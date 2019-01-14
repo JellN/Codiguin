@@ -13,6 +13,8 @@ import android.widget.Toast;
 import com.example.jelln.medispache.R;
 import com.example.jelln.medispache.control.Conexao;
 import com.example.jelln.medispache.model.Usuarios;
+import com.github.rtoshiro.util.format.SimpleMaskFormatter;
+import com.github.rtoshiro.util.format.text.MaskTextWatcher;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
@@ -24,7 +26,7 @@ import com.google.firebase.database.FirebaseDatabase;
 public class usercadastro extends AppCompatActivity {
 
 
-     EditText username, useradress, userpass;
+     EditText username, useradress, userpass, userCNPJ;
      Button userbotao, voltar;
      private FirebaseAuth auth;
   private FirebaseDatabase firebaseDatabase;
@@ -64,9 +66,10 @@ baac();
                 final   String name = username.getText().toString().trim();
                 final String email = useradress.getText().toString().trim();
                 final   String senha = userpass.getText().toString().trim();
+                final String CNPJ = userCNPJ.getText().toString().trim();
 
-                if(!name.equals("")&&!email.equals("")&&!senha.equals("")){
-                    criarUser(email, senha, name);
+                if(!name.equals("")&&!email.equals("")&&!senha.equals("")&&!CNPJ.equals("")){
+                    criarUser(email, senha, name, CNPJ);
 
                 }else{
                     alert("preencha todos os dados");
@@ -87,7 +90,7 @@ baac();
         finish();
     }
 
-    private void criarUser(final String email, final String senha, final String name) {
+    private void criarUser(final String email, final String senha, final String name, final String CNPJ) {
         auth.createUserWithEmailAndPassword(email, senha).addOnCompleteListener(usercadastro.this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
@@ -97,6 +100,7 @@ baac();
                     u.setSearch(name.toLowerCase());
                     u.setStatus("offline");
                     u.setSenha(senha);
+                    u.setCnpj(CNPJ);
                     u.setId(auth.getUid());
                     databaseReference.child("UserEmpresa").child(auth.getUid()).setValue(u);
 
@@ -118,12 +122,15 @@ private void alert(String msg){
 }
 
     private void inicializarcomponentes() {
+        userCNPJ = findViewById(R.id.userCNPJ);
         userbotao = findViewById(R.id.userbotao);
         username = findViewById(R.id.username);
         useradress = findViewById(R.id.useradress);
         userpass = findViewById(R.id.userpass);
         voltar = findViewById(R.id.voltar);
-
+        SimpleMaskFormatter smf = new SimpleMaskFormatter("NN.NNN.NNN/NNNN-NN\n");
+        MaskTextWatcher maskTextWatcher = new MaskTextWatcher(userCNPJ, smf);
+        userCNPJ.addTextChangedListener(maskTextWatcher);
     }
 
     @Override

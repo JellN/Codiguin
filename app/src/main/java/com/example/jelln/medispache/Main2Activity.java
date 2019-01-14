@@ -125,7 +125,7 @@ public class Main2Activity extends AppCompatActivity {
 
     }
     private void deslogars2() {
-        Toast.makeText(getApplicationContext(), "Esta conta não é de um farmacêutico", Toast.LENGTH_LONG);
+        Toast.makeText(getApplicationContext(), "Esta conta não é de uma Empresa", Toast.LENGTH_LONG);
         Conexao.logOut();
         Intent i = new  Intent(getApplicationContext(), login.class);
         i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);

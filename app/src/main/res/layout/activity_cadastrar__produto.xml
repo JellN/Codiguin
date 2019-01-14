@@ -85,6 +85,7 @@
             android:textColor="@color/green"
             android:textStyle="italic"
             android:inputType="number"
+
             />
 
         <ImageButton
