@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="8dp"
+    tools:context=".fragments.Tela_Pedido"
+    android:background="@color/iogu"
+    >
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:background="@color/alface"
+
+
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Detalhes do Pedido"
+                android:textColor="@color/bae"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                />
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:id="@+id/profile_image"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="50dp"
+                android:src="@drawable/ic_launcher_background"
+                />
+
+
+
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="username"
+                android:layout_below="@+id/profile_image"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="15dp"
+                android:textColor="@color/bae"
+                android:textStyle="bold"
+                android:id="@+id/username"
+                android:textSize="18sp"
+
+                />
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+    <RelativeLayout
+        android:id="@+id/attuser"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:background="#fff"
+        android:padding="5dp"
+        android:layout_alignParentLeft="true"
+        android:visibility="gone">
+
+
+
+        <ImageButton
+            android:id="@+id/botaoatt"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:background="@drawable/send"/>
+
+        <ImageButton
+            android:id="@+id/botaocancela"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="50dp"
+            android:layout_alignParentEnd="true"
+            android:background="@drawable/deletar"/>
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:background="@color/ouro"
+        android:layout_width="match_parent"
+        android:layout_height="110dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="210dp">
+        <ScrollView
+            android:layout_width="366dp"
+            android:layout_height="match_parent">
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="450dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentBottom="false"
+                android:layout_marginTop="2dp">
+
+            </android.support.v7.widget.RecyclerView>
+
+        </ScrollView>
+
+
+
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="330dp"
+        android:background="@color/white">
+
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="31dp"
+            android:text="Preço Total: "
+            android:textAlignment="center"
+            android:textColor="@color/negra"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:layout_marginLeft="5dp"/>
+
+        <TextView
+            android:id="@+id/preco_total"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="31dp"
+            android:text="valor"
+            android:textAlignment="center"
+            android:textColor="@color/negra"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:layout_marginLeft="150dp"/>
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="127dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="410dp">
+
+        <Button
+            android:id="@+id/mensagem"
+            android:layout_width="381dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:layout_x="75dp"
+            android:layout_y="327dp"
+            android:background="@color/bae"
+            android:text="Enviar mensagem"
+            android:textColor="@color/yellow"
+            android:textColorLink="@color/white"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/local"
+            android:layout_width="381dp"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/mensagem"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:layout_x="193dp"
+            android:layout_y="329dp"
+            android:background="@color/bae"
+            android:text="local de entrega"
+            android:textColor="@color/yellow"
+            android:textColorLink="@color/white"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+
+    </RelativeLayout>
+</RelativeLayout>

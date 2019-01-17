@@ -27,14 +27,14 @@
                 android:textColor="@color/bae"
                 android:textStyle="bold"
                 />
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:id="@+id/profile_image"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="50dp"
-            android:src="@drawable/ic_launcher_background"
-            />
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:id="@+id/profile_image"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="50dp"
+                android:src="@drawable/ic_launcher_background"
+                />
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:layout_width="30dp"
@@ -55,19 +55,19 @@
                 android:layout_marginRight="-22dp"
                 android:src="@drawable/editare" />
 
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="username"
-            android:layout_below="@+id/profile_image"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="15dp"
-            android:textColor="@color/bae"
-            android:textStyle="bold"
-            android:id="@+id/username"
-            android:textSize="18sp"
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="username"
+                android:layout_below="@+id/profile_image"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="15dp"
+                android:textColor="@color/bae"
+                android:textStyle="bold"
+                android:id="@+id/username"
+                android:textSize="18sp"
 
-            />
+                />
         </RelativeLayout>
     </android.support.v7.widget.CardView>
 
@@ -79,7 +79,8 @@
         android:layout_alignParentStart="true"
         android:background="#fff"
         android:padding="5dp"
-        android:layout_alignParentLeft="true">
+        android:layout_alignParentLeft="true"
+        android:visibility="gone">
 
         <EditText
             android:id="@+id/mudarnome"
@@ -186,10 +187,11 @@
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/salvar"
-        android:layout_width="75dp"
-        android:layout_height="75dp"
-        android:layout_above="@+id/attuser"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginEnd="25dp"
+        android:layout_marginBottom="12dp"
+        android:layout_marginEnd="17dp"
         android:src="@drawable/save" />
 </RelativeLayout>

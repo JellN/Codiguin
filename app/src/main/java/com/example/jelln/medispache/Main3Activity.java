@@ -18,10 +18,9 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.jelln.medispache.control.Conexao;
-import com.example.jelln.medispache.fragments.ChatsFragment;
-import com.example.jelln.medispache.fragments.PedidosFragment;
 import com.example.jelln.medispache.fragments.Produto_fragment;
 import com.example.jelln.medispache.fragments.ProfileFragment;
+import com.example.jelln.medispache.fragments.Tela_Pedido;
 import com.example.jelln.medispache.fragments.UsersFragment;
 import com.example.jelln.medispache.model.Chat;
 import com.example.jelln.medispache.model.Usuarios;
@@ -39,7 +38,7 @@ import java.util.HashMap;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class MainActivity extends AppCompatActivity {
+public class Main3Activity extends AppCompatActivity {
     CircleImageView profilie_image;
     TextView username;
     FirebaseUser user;
@@ -48,12 +47,11 @@ public class MainActivity extends AppCompatActivity {
     DatabaseReference reference;
     Usuarios u;
     boolean foi=true;
-    TabLayout tabLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main3);
 
         Toolbar tool = findViewById(R.id.toolbar);
         setSupportActionBar(tool);
@@ -61,30 +59,26 @@ public class MainActivity extends AppCompatActivity {
 
         profilie_image = findViewById(R.id.imagemperfil);
         username = findViewById(R.id.nomeuser);
+        username.setVisibility(View.GONE);
+        profilie_image.setImageResource(R.drawable.back);
         auth = Conexao.getFirebaseAuth();
         user = auth.getCurrentUser();
         reference = FirebaseDatabase.getInstance().getReference("UserEmpresa").child(user.getUid());
-   //     eventoclick();
+        //     eventoclick();
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-            if(dataSnapshot.exists()){
-                     u = dataSnapshot.getValue(Usuarios.class);
+                if(dataSnapshot.exists()){
+                    u = dataSnapshot.getValue(Usuarios.class);
 
-                        username.setText(u.getName());
-                if(foi ==true){
-                    status("online");
-                    foi =false;
-                }
-                    if (u.getImageUrl() == null) {
-                        profilie_image.setImageResource(R.drawable.ic_launcher_background);
-                    } else {
-                        Glide.with(getApplicationContext()).load(u.getImageUrl()).into(profilie_image);
-
+                    username.setText(u.getName());
+                    if(foi ==true){
+                        status("online");
+                        foi =false;
                     }
-            }else{
-                deslogars2();
-            }}
+                }else{
+                    deslogars2();
+                }}
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
@@ -92,12 +86,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-      tabLayout  = findViewById(R.id.tab_layout);
+
+        final TabLayout tabLayout = findViewById(R.id.tab_layout);
         ViewPager viewPager = findViewById(R.id.view_pager);
         ViewPageAdapter viewPageAdapter = new ViewPageAdapter(getSupportFragmentManager());
-        viewPageAdapter.addFragment(new ChatsFragment(), "Clientes");
-        viewPageAdapter.addFragment(new Produto_fragment(), "Produtos");
-        viewPageAdapter.addFragment(new PedidosFragment(), "Pedidos");
+        viewPageAdapter.addFragment(new Tela_Pedido(), "Pedido");
+
 
 
 
@@ -105,51 +99,23 @@ public class MainActivity extends AppCompatActivity {
         viewPager.setAdapter(viewPageAdapter);
         tabLayout.setupWithViewPager(viewPager);
 
-        reference = FirebaseDatabase.getInstance().getReference("Chats");
-        reference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                int unread=0;
-                if(dataSnapshot.exists()){
-                for(DataSnapshot snapshot : dataSnapshot.getChildren()){
-                    Chat chat = snapshot.getValue(Chat.class);
-                    if(chat.getReceiver().equals(user.getUid()) && !chat.isIsseen()){
-                        unread++;
-                    }
-                }
-                if(unread == 0){
-                    tabLayout.getTabAt(0).setText("Clientes");
-
-                }else{
-                    tabLayout.getTabAt(0).setText("("+unread+") Clientes");
-                }
-
-            }}
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-profilie_image.setOnClickListener(new View.OnClickListener() {
-    @Override
-    public void onClick(View v) {
-
-        mconta();
-    }
-});
-    }
-
-    /*private void eventoclick() {
-        de.setOnClickListener(new View.OnClickListener() {
+        profilie_image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Conexao.logOut();
-                deslogars();
+                voltar();
             }
         });
 
-    }*/
+
+
+    }
+
+    private void voltar() {
+        Intent i = new  Intent(getApplicationContext(), MainActivity.class);
+        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(i);
+        finish();
+    }
 
     private void deslogars() {
         Conexao.logOut();
@@ -160,7 +126,7 @@ profilie_image.setOnClickListener(new View.OnClickListener() {
 
     }
     private void deslogars2() {
-        Toast.makeText(getApplicationContext(), "Esta conta não é de uma empresa", Toast.LENGTH_LONG);
+        Toast.makeText(getApplicationContext(), "Esta conta não é de uma Empresa", Toast.LENGTH_LONG);
         Conexao.logOut();
         Intent i = new  Intent(getApplicationContext(), login.class);
         i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -172,7 +138,7 @@ profilie_image.setOnClickListener(new View.OnClickListener() {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu, menu);
+        getMenuInflater().inflate(R.menu.menus, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -182,14 +148,8 @@ profilie_image.setOnClickListener(new View.OnClickListener() {
         if(id==R.id.logout){
             deslogars();
         }
-        return super.onOptionsItemSelected(item);
-    }
 
-    private void mconta() {
-        Intent i = new  Intent(getApplicationContext(), Main2Activity.class);
-        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(i);
-        finish();
+        return super.onOptionsItemSelected(item);
     }
 
     class ViewPageAdapter extends FragmentStatePagerAdapter{
@@ -225,11 +185,11 @@ profilie_image.setOnClickListener(new View.OnClickListener() {
     }
     public void status(String status){
         if(u!=null){
-        reference = FirebaseDatabase.getInstance().getReference("UserEmpresa").child(user.getUid());
-        HashMap<String, Object> hashMap = new HashMap<>();
-        hashMap.put("status", status);
-        reference.updateChildren(hashMap);
-    }}
+            reference = FirebaseDatabase.getInstance().getReference("UserEmpresa").child(user.getUid());
+            HashMap<String, Object> hashMap = new HashMap<>();
+            hashMap.put("status", status);
+            reference.updateChildren(hashMap);
+        }}
 
     @Override
     protected void onResume() {
@@ -243,5 +203,12 @@ profilie_image.setOnClickListener(new View.OnClickListener() {
         status("offline");
     }
 
-
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent i = new  Intent(getApplicationContext(), MainActivity.class);
+        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(i);
+        finish();
+    }
 }

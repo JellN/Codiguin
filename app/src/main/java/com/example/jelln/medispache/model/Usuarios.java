@@ -12,6 +12,17 @@ public class Usuarios {
     private String Status;
     private String cidade;
 
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    private String tipo;
+
+
     public String getCidade() {
         return cidade;
     }

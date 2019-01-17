@@ -15,6 +15,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 
 import com.example.jelln.medispache.Adapter.ProdutosAdapter;
+import com.example.jelln.medispache.MainActivity;
 import com.example.jelln.medispache.R;
 import com.example.jelln.medispache.control.Conexao;
 import com.example.jelln.medispache.model.Produtos;
@@ -55,6 +56,7 @@ public class Produto_fragment extends Fragment {
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), Cadastrar_Produto.class);
                 getActivity().startActivity(intent);
+
             }
         });
         readUsers();

@@ -12,6 +12,8 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
 
+import com.example.jelln.medispache.Main3Activity;
+import com.example.jelln.medispache.MainActivity;
 import com.example.jelln.medispache.view.MessageActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -79,30 +81,63 @@ public class MyFirebaseMessaging extends FirebaseMessagingService {
         String title = remoteMessage.getData().get("title");
         String body = remoteMessage.getData().get("body");
 
-        RemoteMessage.Notification notification = remoteMessage.getNotification();
-        int j = Integer.parseInt(user.replaceAll("[\\D]", ""));
-        Intent intent = new Intent(this, MessageActivity.class);
-        Bundle bundle = new Bundle();
-        bundle.putString("userID", user);
-        intent.putExtras(bundle);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        PendingIntent pendingIntent = PendingIntent.getActivity(this, j, intent, PendingIntent.FLAG_ONE_SHOT);
 
-        Uri defaultSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(this)
-                .setSmallIcon(Integer.parseInt(icon))
-                .setContentTitle(title)
-                .setContentText(body)
-                .setAutoCancel(true)
-                .setSound(defaultSound)
-                .setContentIntent(pendingIntent);
-        NotificationManager noti = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
 
-        int i = 0;
-        if (j > 0){
-            i = j;
+        if(title.equals("Novo pedido")){
+            RemoteMessage.Notification notification = remoteMessage.getNotification();
+            int j = Integer.parseInt(user.replaceAll("[\\D]", ""));
+            Intent intent = new Intent(this, Main3Activity.class);
+            Bundle bundle = new Bundle();
+            bundle.putString("userID", user);
+            intent.putExtras(bundle);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            PendingIntent pendingIntent = PendingIntent.getActivity(this, j, intent, PendingIntent.FLAG_ONE_SHOT);
+            Uri defaultSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+            NotificationCompat.Builder builder = new NotificationCompat.Builder(this)
+                    .setSmallIcon(Integer.parseInt(icon))
+                    .setContentTitle(title)
+                    .setContentText(body)
+                    .setAutoCancel(true)
+                    .setSound(defaultSound)
+                    .setContentIntent(pendingIntent);
+            NotificationManager noti = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
+
+            int i = 0;
+            if (j > 0){
+                i = j;
+            }
+
+            noti.notify(i, builder.build());
+
+        }
+        else {
+            RemoteMessage.Notification notification = remoteMessage.getNotification();
+            int j = Integer.parseInt(user.replaceAll("[\\D]", ""));
+            Intent intent = new Intent(this, MessageActivity.class);
+            Bundle bundle = new Bundle();
+            bundle.putString("userID", user);
+            intent.putExtras(bundle);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            PendingIntent pendingIntent = PendingIntent.getActivity(this, j, intent, PendingIntent.FLAG_ONE_SHOT);
+            Uri defaultSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+            NotificationCompat.Builder builder = new NotificationCompat.Builder(this)
+                    .setSmallIcon(Integer.parseInt(icon))
+                    .setContentTitle(title)
+                    .setContentText(body)
+                    .setAutoCancel(true)
+                    .setSound(defaultSound)
+                    .setContentIntent(pendingIntent);
+            NotificationManager noti = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
+
+            int i = 0;
+            if (j > 0){
+                i = j;
+            }
+
+            noti.notify(i, builder.build());
+
         }
 
-        noti.notify(i, builder.build());
+
     }
 }
