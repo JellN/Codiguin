@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,7 +23,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class login extends AppCompatActivity {
     EditText loginadress, loginpass;
-    Button loginbotao, novocad;
+    ImageView loginbotao, novocad;
     TextView resetsenha;
 
     private FirebaseAuth auth;
@@ -96,9 +97,8 @@ public class login extends AppCompatActivity {
 
 
     private void inicializarcomponentes() {
-
         novocad = findViewById(R.id.novocad);
-        loginbotao = findViewById(R.id.loginbotao);
+        loginbotao = findViewById(R.id.Loginbotao);
         loginadress = findViewById(R.id.loginadress);
         loginpass = findViewById(R.id.loginpass);
         resetsenha = findViewById(R.id.resetarsenha);

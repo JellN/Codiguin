@@ -8,14 +8,15 @@
     >
 
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="453dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="27dp">
+        android:layout_width="400dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_height="550dp"
+        android:layout_marginTop="27dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="27dp">
 
-        <Button
+        <!--<Button
             android:id="@+id/voltar"
             android:layout_width="381dp"
             android:layout_height="wrap_content"
@@ -27,22 +28,46 @@
             android:background="@color/green"
             android:text="voltar"
             android:textColor="@color/white"
-            android:textSize="18sp" />
+            android:textSize="18sp" />-->
 
-        <Button
-            android:id="@+id/userbotao"
-            android:layout_width="381dp"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/voltar"
+        <!-- <Button
+             android:id="@+id/userbotao"
+             android:layout_width="150dp"
+             android:layout_height="wrap_content"
+             android:layout_above="@+id/voltar"
+             android:layout_centerHorizontal="true"
+             android:layout_marginTop="10dp"
+             android:layout_x="193dp"
+             android:layout_y="329dp"
+             android:background="@color/green"
+             android:text="Cadastrar"
+             android:textColor="@color/white"
+             android:textColorLink="@color/white"
+             android:textSize="18sp" />-->
+
+
+        <Spinner
+            android:id="@+id/cidade"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="10dp"
-            android:layout_x="193dp"
-            android:layout_y="329dp"
-            android:background="@color/green"
-            android:text="Cadastrar"
-            android:textColor="@color/white"
+            android:layout_width="268dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="275dp"
+            ></Spinner>
+
+        <EditText
+            android:id="@+id/houseAdress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/cidade"
+            android:ems="10"
+            android:hint="Rua e Nº"
+            android:inputType="textPersonName"
+            android:textColorHint="@color/bk"
             android:textColorLink="@color/white"
-            android:textSize="18sp" />
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:fontFamily="@font/xilosa_"/>
 
         <EditText
             android:id="@+id/userpass"
@@ -56,30 +81,8 @@
             android:textColorHint="@color/bk"
             android:textColorLink="@color/white"
             android:textSize="24sp"
-            android:textStyle="bold" />
-
-
-        <EditText
-            android:id="@+id/userCNPJ"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/userpass"
-            android:layout_centerHorizontal="true"
-            android:ems="10"
-            android:hint="CNPJ"
-            android:inputType="number"
-            android:textColorHint="@color/bk"
-            android:textColorLink="@color/white"
-            android:textSize="24sp"
             android:textStyle="bold"
-            />
-
-        <Spinner
-            android:id="@+id/cidade"
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/userCNPJ"></Spinner>
+            android:fontFamily="@font/xilosa_"/>
 
         <EditText
             android:id="@+id/useradress"
@@ -93,7 +96,8 @@
             android:textColorHint="@color/bk"
             android:textColorLink="@color/white"
             android:textSize="24sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:fontFamily="@font/xilosa_"/>
 
         <EditText
             android:id="@+id/username"
@@ -101,14 +105,16 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="42dp"
+            android:layout_marginTop="127dp"
             android:ems="10"
             android:hint="Nome"
             android:inputType="textPersonName"
             android:textColorHint="@color/bk"
             android:textColorLink="@color/white"
             android:textSize="24sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:fontFamily="@font/xilosa_"/>
+
 
         <TextView
             android:id="@+id/textView"
@@ -116,10 +122,33 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
+            android:layout_marginTop="51dp"
             android:lineSpacingExtra="10sp"
             android:text="Cadastro de Usuário"
             android:textSize="24sp"
-            android:textStyle="bold|italic" />
+            android:textStyle="bold|italic"
+            android:fontFamily="@font/xilosa_"/>
+
+
+        <ImageView
+            android:id="@+id/cad_voltar"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_below="@+id/houseAdress"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/btn_back"
+            android:layout_alignRight="@+id/houseAdress"
+         />
+
+        <ImageView
+            android:id="@+id/cad_cadastro"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_below="@+id/houseAdress"
+            android:background="@drawable/botcad"
+            android:layout_marginTop="30dp"
+            android:layout_alignLeft="@+id/houseAdress"
+           />
 
     </RelativeLayout>
 

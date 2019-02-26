@@ -25,6 +25,7 @@ import com.example.jelln.medispache.fragments.ProfileFragment;
 import com.example.jelln.medispache.fragments.UsersFragment;
 import com.example.jelln.medispache.model.Chat;
 import com.example.jelln.medispache.model.Usuarios;
+import com.example.jelln.medispache.view.Tipo_Empresa;
 import com.example.jelln.medispache.view.login;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -72,6 +73,12 @@ public class MainActivity extends AppCompatActivity {
                      u = dataSnapshot.getValue(Usuarios.class);
 
                         username.setText(u.getName());
+                        if(u.getTipo()==null){
+                            Intent i = new  Intent(getApplicationContext(), Tipo_Empresa.class);
+                            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            startActivity(i);
+                            finish();
+                        }
                 if(foi ==true){
                     status("online");
                     foi =false;

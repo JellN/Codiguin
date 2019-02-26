@@ -1,5 +1,6 @@
 package com.example.jelln.medispache.view;
 
+import android.media.Image;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -7,6 +8,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.jelln.medispache.R;
@@ -17,7 +19,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class ResetSenha extends AppCompatActivity {
 EditText email;
-Button reset;
+ImageView reset;
 FirebaseAuth auth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

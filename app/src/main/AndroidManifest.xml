@@ -32,6 +32,9 @@
         <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.Tipo_Empresa"
+            android:screenOrientation="portrait" />
 
         <service
             android:name=".Notifications.MyFirebaseIdService"
@@ -53,7 +56,7 @@
         <activity android:name=".view.Cadastrar_Produto" />
         <activity android:name=".view.Atualizar_Produto" />
         <activity android:name=".Main2Activity" />
-        <activity android:name=".Main3Activity"></activity>
+        <activity android:name=".Main3Activity" />
     </application>
 
 </manifest>

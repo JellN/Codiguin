@@ -28,13 +28,13 @@ import com.google.firebase.database.FirebaseDatabase;
 public class usercadastro extends AppCompatActivity {
 
 
-     EditText username, useradress, userpass, userCNPJ;
+    EditText username, useradress, userpass, userCNPJ;
     Spinner cidade;
 
     Button userbotao, voltar;
-     private FirebaseAuth auth;
-  private FirebaseDatabase firebaseDatabase;
-  private DatabaseReference databaseReference;
+    private FirebaseAuth auth;
+    private FirebaseDatabase firebaseDatabase;
+    private DatabaseReference databaseReference;
     Usuarios u = new Usuarios();
 
     @Override
@@ -42,8 +42,8 @@ public class usercadastro extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_usercadastro);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        inicializarcomponentes();
-        EventoClicks();
+        //inicializarcomponentes();
+       // EventoClicks();
         inicializarfirebase();
 
     }
@@ -60,7 +60,7 @@ public class usercadastro extends AppCompatActivity {
         voltar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-baac();
+                baac();
 
             }
         });
@@ -113,9 +113,9 @@ baac();
 
 
                     alert("Cadastro efetuado com sucesso");
-        Intent i = new Intent(usercadastro.this, login.class);
-        startActivity(i);
-        finish();
+                    Intent i = new Intent(usercadastro.this, Tipo_Empresa.class);
+                    startActivity(i);
+                    finish();
                 }else{
                     alert("Erro ao cadastrar, verifique sua conexão.");
 
@@ -123,12 +123,12 @@ baac();
             }
         });
     }
-private void alert(String msg){
-    Toast.makeText(getApplicationContext(),msg,Toast.LENGTH_SHORT).show();
+    private void alert(String msg){
+        Toast.makeText(getApplicationContext(),msg,Toast.LENGTH_SHORT).show();
 
-}
+    }
 
-    private void inicializarcomponentes() {
+    /*private void inicializarcomponentes() {
         userCNPJ = findViewById(R.id.userCNPJ);
         userbotao = findViewById(R.id.userbotao);
         username = findViewById(R.id.username);
@@ -141,7 +141,7 @@ private void alert(String msg){
         cidade = findViewById(R.id.cidade);
         ArrayAdapter arrayAdapter = ArrayAdapter.createFromResource(this, R.array.cidades, android.R.layout.simple_spinner_item);
         cidade.setAdapter(arrayAdapter);
-    }
+    }*/
 
     @Override
     protected void onStart() {

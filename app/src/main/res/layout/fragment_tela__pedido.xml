@@ -6,8 +6,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:padding="8dp"
     tools:context=".fragments.Tela_Pedido"
-    android:background="@color/iogu"
+    android:background="@color/negra"
     >
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="500dp">
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
 
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
@@ -19,7 +27,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="8dp"
-            android:background="@color/alface"
+            android:background="@color/white"
 
 
             >
@@ -93,9 +101,9 @@
 
 
     <RelativeLayout
-        android:background="@color/ouro"
+        android:background="@color/white"
         android:layout_width="match_parent"
-        android:layout_height="110dp"
+        android:layout_height="115dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="210dp">
         <ScrollView
@@ -196,4 +204,6 @@
 
 
     </RelativeLayout>
+</RelativeLayout>
+    </ScrollView>
 </RelativeLayout>

@@ -11,6 +11,8 @@ public class Usuarios {
     private String cnpj;
     private String Status;
     private String cidade;
+    private String tipo;
+
 
     public String getTipo() {
         return tipo;
@@ -20,7 +22,6 @@ public class Usuarios {
         this.tipo = tipo;
     }
 
-    private String tipo;
 
 
     public String getCidade() {
